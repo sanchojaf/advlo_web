@@ -1,0 +1,14 @@
+<%= javascript_include_tag "spree/frontend/gmaps-auto-complete" %>
+<div id='input' class="form-group col-md-8 col-md-offset-2 input-lg">
+  <%= form_tag spree.products_path, :method => :get, :class => "form-submit-enter" do %>
+    <% placeholder = " Where are you going? place, city, aiport ..." %>
+    <input id='gmaps-input-address' class="gmaps-input-address form-control input-lg imput-submit-enter"
+           placeholder="<%= placeholder %>" type='text' />
+    
+    <%= text_area_tag 'gmaps-output-latitude' %>
+    <%= text_area_tag 'gmaps-output-longitude' %>
+   <%= hidden_field :view_type, view %>
+<% end %>
+
+</div><br/><br/>
+

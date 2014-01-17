@@ -1,0 +1,17 @@
+<nav class="navbar col-md-10" id="top-nav-bar">
+  <% if params[:controller] != "spree/home" %>
+    <ul class="nav navbar-nav col-md-10" data-hook>
+      <li data-hook class="navbar col-md-12">
+        <%= render :partial => 'spree/shared/search' %>
+      </li>
+    </ul>
+  <% end %>
+  <%= puts " params: ////////////////////// #{params.inspect }  ///////////////////"%>
+  
+  <ul id="nav-bar" class="nav navbar-nav navbar-right" data-hook>
+    <li id="search-bar" data-hook>
+      
+    </li>
+  </ul>
+</nav>
+

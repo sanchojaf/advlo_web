@@ -1,0 +1,15 @@
+<footer id="footer" class="navbar navbar-default" data-hook>
+  <div id="footer-left" class="col-md-6 pull-left" data-hook>
+    <ul class="list-unstyled">
+      <% if spree_current_user %>
+          <li><%= link_to Spree.t(:my_account), spree.account_path %></li>
+          <li><%= link_to Spree.t(:logout), spree.logout_path %></li>
+      <% else %>
+          <li><%= link_to Spree.t(:login), spree.login_path %></li>
+      <% end %>
+      <li><%= t(:legal_terms) %></li>
+      <li><%= t(:about_us)  %></li>
+      <li><%= t(:contact_us)  %></li>
+    </ul>
+  </div>
+</footer>

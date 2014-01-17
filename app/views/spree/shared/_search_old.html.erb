@@ -1,0 +1,12 @@
+<%= javascript_include_tag "spree/frontend/gmaps-auto-complete" %>
+<div id='input' class="form-group col-md-8 col-md-offset-2 input-lg">
+<%= form_tag spree.products_path, :method => :get, :class => "form-submit-enter" do %>
+  <% placeholder = " Where are you going? place, city, aiport ..." %>
+  <%= search_field_tag :keywords, params[:keywords], :plaeholder => placeholder, class: "gmaps-input-address form-control input-lg imput-submit-enter" %>
+  <%= # submit_tag Spree.t(:search), :name => nil 
+  %>
+<% end %>
+</div>
+
+
+

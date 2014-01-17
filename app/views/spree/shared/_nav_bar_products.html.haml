@@ -1,0 +1,72 @@
+%br
+
+%nav#product-nav-bar.navbar.col-md-12
+  %ul.nav.navbar-nav
+    %li.dropdown
+      %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Categories
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          = # link_to 'Adventure', :controller => 'spree/products', :locals => {:taxon => "adventure"} 
+          - @taxon = Spree::Taxon.find_by_name('Categories')
+          = taxons_tree(Spree::Taxonomy.first.root, @taxon, Spree::Config[:max_level_in_taxons_menu] || 1)
+
+    %li.dropdown
+      %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Distance
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          %a{href: "#"} 10 Km
+        %li
+          %a{href: "#"} 25 Km
+        %li
+          %a{href: "#"} 50 Km
+        %li
+          %a{href: "#"} 100 Km
+
+    %li.dropdown
+      %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}  
+        Recommended
+        %b.caret
+    %li.dropdown
+      %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Prices
+        %b.caret
+      
+      %ul.dropdown-menu
+        %li          
+          %label.checkbox
+            %input{type: "checkbox", value: ""} less than $200
+        %li
+          %label.checkbox 
+            %input{ value: "$200 - $400", type: "checkbox" } $200 - $400
+        %li
+          %label.checkbox 
+            %input{ value: "less than $200", type: "checkbox" } $400 - $600
+        %li
+          %label.checkbox 
+            %input{ value: "less than $200", type: "checkbox" } more than $600
+
+    %li.dropdown
+      %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+        Score
+        %b.caret
+
+
+
+  %ul.nav.navbar-nav.navbar-right
+    = link_to  :controller => 'spree/products', :locals => {:view => "grid"}  do
+      %button.btn.btn-default{type: "button"}
+        %span.glyphicon.glyphicon-th
+    = link_to :controller => 'spree/products', :locals => {:view => "grid-large"} do
+      %button.btn.btn-default{type: "button"}
+        %span.glyphicon.glyphicon-th-large
+    = link_to  :controller => 'spree/products', :locals => {:view => "map-marker"} do
+      %button.btn.btn-default{type: "button"}
+        %span.glyphicon.glyphicon-map-marker
+
+
+
+

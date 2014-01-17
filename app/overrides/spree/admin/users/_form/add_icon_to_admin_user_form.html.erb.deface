@@ -1,0 +1,17 @@
+<!-- insert_bottom '[data-hook="admin_user_form_fields"]' -->
+<%= f.field_container :icon do %>
+  <%= f.label :icon, Spree.t(:icon) %><br />
+  <%= f.file_field :icon %>
+<% end %>
+<%= f.field_container :first_name do %>
+  <%= f.label :first_name, Spree.t(:first_name) %><br />
+  <%= f.text_field :first_name %>
+<% end %>
+<%= f.field_container :last_name do %>
+  <%= f.label :last_name, Spree.t(:last_name) %><br />
+  <%= f.text_field :last_name %>
+<% end %>
+<%= f.field_container :phone do %>
+  <%= f.label :phone, Spree.t(:phone) %><br />
+  <%= f.text_field :phone %>
+<% end %>

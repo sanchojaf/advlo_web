@@ -1,0 +1,26 @@
+<!-- insert_bottom '[data-hook="admin_product_form_left"]' -->
+<%= f.field_container :itinerary do %>
+  <%= f.label :itinerary, Spree.t(:itinerary) %>
+  <%= f.text_area :itinerary, {:rows => "#{unless @product.has_variants? then '20' else '13' end}", :class => 'fullwidth'} %>
+  <%= f.error_message_on :itinerary %>
+<% end %>
+
+<%= f.field_container :cancellation do %>
+  <%= f.label :cancellation, Spree.t(:cancellation) %>
+  <%= f.text_area :cancellation, {:rows => "#{unless @product.has_variants? then '20' else '13' end}", :class => 'fullwidth'} %>
+  <%= f.error_message_on :cancellation %>
+<% end %>
+
+<%= f.field_container :things_to_bring do %>
+  <%= f.label :things_to_bring, Spree.t(:things_to_bring) %>
+  <%= f.text_area :things_to_bring, {:rows => "#{unless @product.has_variants? then '20' else '13' end}", :class => 'fullwidth'} %>
+  <%= f.error_message_on :things_to_bring %>
+<% end %>
+
+<%= f.field_container :pick_up do %>
+  <%= f.label :pick_up, Spree.t(:pick_up) %>
+  <%= f.text_area :pick_up, {:rows => "#{unless @product.has_variants? then '20' else '13' end}", :class => 'fullwidth'} %>
+  <%= f.error_message_on :pick_up %>
+<% end %>
+
+

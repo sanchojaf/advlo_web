@@ -1,0 +1,70 @@
+<%
+  paginated_products = @searcher.retrieve_products if params.key?(:keywords)
+  products ||= locals[:products]
+  paginated_products ||= products
+  view = @view || 'grid'
+%>
+
+<% content_for :head do %>
+  <% if paginated_products.respond_to?(:num_pages) %>
+    <%= rel_next_prev_link_tags paginated_products %>
+  <% end %>
+<% end %>
+
+<% if products.empty? %>
+  <%= Spree.t(:no_products_found) %>
+<% elsif params.key?(:keywords) %>
+  <h6 class="search-results-title"><%= Spree.t(:search_results, :keywords => h(params[:keywords])) %></h6>
+<% end %>
+
+<% if params[:controller] == "spree/home"  %>
+  <br/>
+<% end  %>
+
+<% cols = 12 %>
+<% cols = 8 if view == "map-marker" %>
+
+<div class="col-md-<%= cols %>">
+  <% if products.any? %>
+  <div id="products" class="row" data-hook>
+    <% products.each do |product| %>
+      <% size = 6 %>
+      <% size = 4 if params[:controller] == "spree/home"  %>
+      <% size = 4 if view == "grid" %>
+      <div id="product_<%= product.id %>" class="col-md-<%= size %> col-sm-6" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+        <div id="main-image" class="panel panel-default">
+          <div class="panel-body text-center product-body">
+            <% if view == 'grid-large' %>
+              <%= link_to product_image(product, :itemprop => "image"), product, :itemprop => 'url' 
+               %><br><br>
+            <% else %>
+              <%= link_to medium_image(product, :itemprop => "image"), product, :itemprop => 'url' %><br><br>             
+            <% end %>            
+          </div><br/><br/><br/>
+          <% if view == 'grid-large' %>
+            <br/><br/><br/><br/><br/><br/>
+          <% end %>
+          <div class="panel-footer text-center">
+             <%= link_to truncate(product.name, :length => 50), product, :class => 'info', :itemprop => "name", :title => product.name %>         
+            <div class="text-center info"><%= "4, #{1 + rand(8)} " %><%= image_tag 'store/stars.png' %><%= " #{5 + rand(20)} reviews" %></div>
+            <span class="price selling lead" itemprop="price"><%= display_price(product) %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <% reset_cycle("classes") %>
+  </div>
+  <% end %>
+</div>
+
+<% if view == "map-marker" %>
+  <div id='google-map' class="col-md-4">
+    <%= render :partial => 'spree/shared/google_map' %>
+  </div>
+<% end %>
+
+
+
+<% if paginated_products.respond_to?(:num_pages) %>
+  <%= paginate paginated_products %>
+<% end %>

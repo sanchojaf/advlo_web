@@ -1,0 +1,81 @@
+@import "bootstrap";
+
+// -- Spree Custom Header and Footer ---------------------
+#spree-header {
+  background: #fff; // asset-url('spree-header.jpg') center center; // #1c5c92 asset-url('spree-header.jpg') center center;
+  background-size: cover;
+  margin-bottom: 0px; //$line-height-computed;
+  #header {
+    background: rgba(214, 214, 214, 0.4);
+    padding: $line-height-computed 0;
+    padding-bottom: 0px;
+    padding-top: 10px;
+  }
+  #logo {
+    margin-bottom: 10px;
+    img {
+      // width: 306px;
+    }
+  }
+  #home_carusel {
+    padding-left: 0px;
+    padding-right: 0px;
+    
+  }
+  .nav a {
+    color: rgba(14, 14, 14, 0.4);
+    &:hover {
+      background:rgba(200, 200, 200, 0.4);
+    }
+  }
+  .navbar {
+    border: 0;
+    margin-bottom: 0;
+  }
+}
+#spree-footer {
+  background: $gray-dark;
+  padding-top: $padding-base-horizontal;
+  margin-top: $line-height-computed;
+  color: #fff;
+}
+
+// -- Spree Layout Custom Rules -------------------------
+
+//TODO, bug #6
+.alert-error { .alert-danger{}; }
+.alert-alert { .alert-info{}; }
+
+.product-body {
+  height: 170px;
+}
+.progress-steps {
+  margin-top: $line-height-computed;
+}
+h1 {
+  margin-bottom: 30px;
+}
+
+#google-map-pend {
+  height: 50px;
+
+
+  border: 1px solid #999;
+  -moz-box-shadow:    0px 0px 5px #ccc;
+  -webkit-box-shadow: 0px 0px 5px #ccc;
+  box-shadow:         0px 0px 5px #ccc;
+}
+
+#gmaps-canvas {
+  height: 496px;
+}
+
+#product-nav-bar {
+  margin-bottom: 0px;
+}
+
+#gmaps-output-latitude, #gmaps-output-longitude {
+ display: none;
+}
+
+

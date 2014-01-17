@@ -1,0 +1,123 @@
+<div class="col-md-4" data-hook="product_left_part">
+    <div data-hook="product_left_part_wrap">
+      <div id="product-images" data-hook="product_images">
+        <div id="main-image" class="panel panel-default" data-hook>
+          <div class="panel-body text-center">  
+            <%= link_to image_tag(@product.user.icon.url(:normal), :alt => @product.user.first_name) %>    
+          </div>
+          <div class="panel-footer text-center">
+            <a href="#"> More about the host</a><br/>
+            <button type="button" class="btn btn-info"> Contact Me </button>
+          </div>
+        </div>                          
+      </div>
+      <h4 >
+        <%= "Duration #{@product.activity_detail.duration }" unless (@product.activity_detail.nil? || 
+                                                          @product.activity_detail.duration.blank?     )%>
+      </h4>
+      <div data-hook="product_properties">
+        <%= render :partial => 'properties' %>
+      </div>
+      <div data-hook="promotions">
+        <%= render :partial => 'promotions' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8" data-hook="product_right_part">
+   
+   <!-- Carousel
+    ================================================== -->
+    <% descriptions = accurate_title %>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+       <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">   
+        <% if (@product.images + @product.variant_images).uniq.size > 0 %>
+          <% i = 0 %>  
+          <% @product.images.each do |image| %>    
+            <% i = i + 1 %>   
+					  <div class="item <%= 'active' if i == 1 %>" >
+						  <div id="main-image">
+						    <%= link_to(image_tag(image.attachment.url(:large), class: ""), image.attachment.url(:product)) 
+                  #image_tag image.attachment.url(:large)
+                  #link_to large_image(@product, :itemprop => "image") 
+                %>                 
+						  </div>						
+					  </div>	
+          <% end %> 	
+          <% if @product.has_variants? %>
+            <% @product.variant_images.each do |image| %>
+              <% next if @product.images.include?(i) %>
+              <% i = i + 1 %>  
+              <div class="item <%= 'active' if i == 1 %>" >
+                <div id="main-image">                           
+                  <%= link_to(image_tag(image.attachment.url(:large), class: ""), image.attachment.url(:product)) %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>			
+        <% end %>                
+      </div>
+      
+      <div class="container">
+       	<div class="carousel-caption">              					
+						<h1><strong><%=descriptions%></strong></h1>
+						<h2><strong><%="by"%></strong></h2>
+            <h2><strong><%="Adam"%></strong></h2>
+				</div>
+      </div> 
+
+      <a class="left carousel-control" data-slide="prev" href="#myCarousel">
+        <span class="glyphicon glyphicon-chevron-left"></span>      
+      </a>
+      <a class="right carousel-control" data-slide="next" href="#myCarousel">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div><!-- /.carousel -->
+
+    <div data-hook="product_right_part_wrap">
+       <div id="product-description" data-hook="product_description">
+          <div id="cart-form" class="col-md-8" data-hook="cart_form">
+            <%= render :partial => 'cart_form' %>
+          </div>
+          <div class="col-md-4">
+            <%= render :partial => 'taxons' %>
+          </div>
+        </div>
+        
+      <!--############  Description #############-->
+		  <div class="user">			    								    				
+			  <div class="tab-content">
+				  <ul class="nav nav-tabs">
+					    <li class="active"><a href="#description" data-toggle="tab"><h4>Overview</h4></a></li>
+					    <li><a href="#itinerary" data-toggle="tab"><h4>Itinerary</h4></a></li>
+					    <li><a href="#things_to_bring" data-toggle="tab"><h4>Things to brings</h4></a></li>
+					    <li><a href="#pick_up" data-toggle="tab"><h4>Pick up</h4></a></li>
+					    <li><a href="#cancellation" data-toggle="tab"><h4>Cancellation</h4></a></li>
+				  </ul>				
+				
+				  <div id="product-description"  class="tab-content" >
+
+					  <div class="tab-pane active" id="description">
+               <br/>
+               <div class="well" itemprop="description" data-hook="description">                
+                  <%= product_description(@product) rescue Spree.t(:product_has_no_description) %>
+               </div>						
+					  </div>
+
+				  
+				  </div>
+			  </div>				 
+		  </div>	<!--Description-->    			  		
+
+    </div>
+  </div>
+
+</div>
