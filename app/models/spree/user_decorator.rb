@@ -4,7 +4,7 @@ module Spree
     has_many :questions, dependent: :destroy
 
     has_attached_file :icon,
-      styles: { mini:'32x32>', normal: '305x305>' },
+      styles: { mini:'32x32>', normal: '250x250>' },
       default_style: :normal,
       url: '/spree/users/:id/:style/:basename.:extension',
       path: ':rails_root/public/spree/users/:id/:style/:basename.:extension',

@@ -1,9 +1,10 @@
 <div id="spree-header" style="margin-bottom: 0px; background-image: 'images/slides/ciclistas.png';">
-
 	<header id="header" data-hook>
 		<div class="container">
 	  		<figure id="logo" class="col-md-2" data-hook><%= logo %></figure>
-	  		<%= render :partial => 'spree/shared/nav_bar' %>
+        <% if params[:controller] == "spree/products" %>
+	  		  <%= render :partial => 'spree/shared/nav_bar' %>
+        <% end %>
 		</div>
 	</header>
 	<div class="container">
@@ -14,59 +15,3 @@
 </div>
 
 
-<% @product = Spree::Product.first %>
-
-<% if params[:controller] == "spree/home" %>
-
-<!-- Carousel
-    ================================================== -->
-    <% descriptions = accurate_title %>
-    <div id="home_carousel" class="carousel slide col-md-12" data-ride="carousel">
-       <!-- Indicators -->
-      <ol class="carousel-indicators">        
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-      </ol>
-
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">   
-        
-        <div class="item active" >
-				  <div> <%= image_tag('slides/slide_1.png') %> </div>						
-				</div>	
-        <div class="item" >
-				  <div > <%= image_tag('slides/slide_2.png') %> </div>						
-				</div>	  
-        <div class="item" >
-				  <div > <%= image_tag('slides/slide_3.png') %> </div>						
-				</div>	    
-        <div class="item" >
-				  <div > <%= image_tag('slides/slide_4.png') %> </div>						
-				</div>	  
-        <div class="item" >
-				  <div > <%= image_tag('slides/slide_5.png') %> </div>						
-				</div>	
-        <div class="item" >
-				  <div > <%= image_tag('slides/slide_6.png') %> </div>						
-				</div>	  
- 
-      </div>      
-
-      <div class="container">
-       	<div class="carousel-caption">              					
-						<%= render :partial => 'spree/shared/search' %>   
-            <br><br>        
-				</div>
-      </div> 
-      <a class="left carousel-control" data-slide="prev" href="#home_carousel">
-        <span class="glyphicon glyphicon-chevron-left"></span>      
-      </a>
-      <a class="right carousel-control" data-slide="next" href="#home_carousel">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-      </a>
-    </div><!-- /.carousel -->
-
-
-<% end %>

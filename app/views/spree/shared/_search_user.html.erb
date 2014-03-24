@@ -1,0 +1,28 @@
+<div class="col-md-6 col-sm-6 ">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= Spree.t(:search_customer) %>                    
+    </div>   
+    <div id="new-customer" class="panel-body" data-hook="login">           
+
+      <p class="field" id=<%="#{@measurement_set.id}customer" %> >
+        <% customers = Spree::User.all.collect {|u| u if u.name }.compact %>
+
+        <% costumer_elements = [
+           user.text_field(:email,
+                            :class => 'form-control required',
+                            :placeholder => "#{Spree.t(:email)}",
+                            :disabled => false)
+           ].join.gsub('"', "'").gsub("\n", "")       
+        %>
+        <%= javascript_tag do -%>
+          $('#<%="#{@measurement_set.id}customer" %>').append("<%== costumer_elements %>");
+        <% end %>
+      </p>
+      <noscript>
+        <%= user.text_field :customer, :class => 'form-control required' %>
+      </noscript>
+          
+    </div>  
+  </div>
+</div>
