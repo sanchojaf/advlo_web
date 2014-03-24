@@ -32,18 +32,23 @@
       <% size = 4 if params[:controller] == "spree/home"  %>
       <% size = 4 if view == "grid" %>
       <div id="product_<%= product.id %>" class="col-md-<%= size %> col-sm-6" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
-        <div id="main-image" class="panel panel-default">
+
+        <div id="main-image" class="panel panel-default ">
+
           <div class="panel-body text-center product-body">
             <% if view == 'grid-large' %>
-              <%= link_to product_image(product, :itemprop => "image"), product, :itemprop => 'url' 
-               %><br><br>
+              <%= link_to product_image(product, :itemprop => "image", :class => "text-center img-responsive"), product,  :itemprop => 'url' , :width => '100%', :class => "center"%>
+              <div class="hidden-sm"><br><br></div>
             <% else %>
-              <%= link_to medium_image(product, :itemprop => "image"), product, :itemprop => 'url' %><br><br>             
+              <%= link_to medium_image(product, :itemprop => "image", :class => " img-responsive"), product, :itemprop => 'url' , :width => '100%', :class => "center" %><br><br>             
             <% end %>            
-          </div><br/><br/><br/>
+          
+          </div> 
+          <div class="hidden-sm"><br/><br/><br/></div>
           <% if view == 'grid-large' %>
-            <br/><br/><br/><br/><br/><br/>
+            <div class="hidden-sm"><br/><br/><br/><br/><br/><br/></div>
           <% end %>
+
           <div class="panel-footer text-center">
              <%= link_to truncate(product.name, :length => 50), product, :class => 'info', :itemprop => "name", :title => product.name %>         
             <div class="text-center info"><%= "4, #{1 + rand(8)} " %><%= image_tag 'store/stars.png' %><%= " #{5 + rand(20)} reviews" %></div>

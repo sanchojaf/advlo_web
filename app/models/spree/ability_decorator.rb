@@ -1,6 +1,7 @@
 module Spree
   class AbilityDecorator
     include CanCan::Ability
+
     def initialize(user)
       if user.respond_to?(:has_spree_role?) && user.has_spree_role?('host')
         can [:manage], Spree::Order
@@ -12,6 +13,7 @@ module Spree
         can [:admin,  :manage], Property
       end
     end
+
   end
   Ability.register_ability(AbilityDecorator)
 end
