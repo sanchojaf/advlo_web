@@ -13,7 +13,7 @@
 
 <% unless params[:keywords].present? %>
   <div data-hook="taxon_children">
-    <%= render :partial => 'taxon', :collection => @taxon.children %>
+    <%= render :partial => 'spree/taxons/taxon', :collection => @taxon.children %>
   </div>
 <% end %>
 

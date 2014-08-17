@@ -1,7 +1,8 @@
 <% if spree_current_user %>
 
   <div data-hook="homepage_products">
-    <%= render 'home_carrusel' %>
+    <%=# render 'home_carrusel' 
+    %>
     <%= render :partial => 'spree/shared/products', :locals => { :products => @products, :view => 'grid' }%>
   </div>
 
